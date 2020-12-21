@@ -1,0 +1,18 @@
+<form [formGroup]='contactAddForm' (ngSubmit)="contactAddForm.valid && contactAdd()" autocomplete="off">
+  <h2 class="text-center text-primary">Add contact</h2>
+  <hr>
+
+  <app-text-input [formControl]="contactAddForm.controls['name']"
+                  [label]='"Contact name"'></app-text-input>
+  <app-custom-dropdown [formControl]="contactAddForm.controls['callingCode']" class="mt-2"></app-custom-dropdown>
+
+
+  <app-text-input [formControl]='contactAddForm.controls["mobileNumber"]'
+                  [label]='"Mobile number"' class="mt-2"></app-text-input>
+
+  <div class="form-group text-center">
+    <button [disabled]="!contactAddForm.valid" class="btn btn-success btn-block mx-2 mr-2" type="submit">Contact Add</button>
+    <button class="btn btn-default btn-block mx-2 mr-2" (click)="cancel()" type="button">Cancel</button>
+  </div>
+</form>
+

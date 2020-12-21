@@ -1,0 +1,20 @@
+<div class="col-12" *ngIf="contact">
+  <div class="alert alert-info" *ngIf="editForm.dirty">
+    <strong>Information: </strong> You have made changes.  Any unsaved changes will be lost
+  </div>
+      <form #editForm="ngForm" id="editForm" (ngSubmit)="updateContact(this.contactEditForm.value)">
+        <h2 class="text-center text-primary">Edit contact</h2>
+        <div class="form-inline">
+          <label class="col-12 d-block" for="name">Name: </label>
+          <input [(ngModel)]="contact.id" [formControl]="contactEditForm.controls['id']" hidden>
+          <input [(ngModel)]="contact.name" [formControl]="contactEditForm.controls['name']" type="text" name="name" class="form-control mx-2 col-12 d-inline-block">
+          <app-custom-dropdown [formControl]="contactEditForm.controls['callingCode']" class="mx-2 mt-2"></app-custom-dropdown>
+          <label class="col-12 d-block" for="mobileNumber">Mobile number: </label>
+          <input [(ngModel)]="contact.mobileNumber" [formControl]="contactEditForm.controls['mobileNumber']" type="text" name="mobileNumber" class="form-control mx-2 col-12 d-inline-block">
+        </div>
+        <button [disabled]="!contactEditForm.valid" form="editForm" type="submit" class="btn btn-success btn-block mx-2 mt-2">Save Changes</button>
+        <button class="btn btn-default btn-block mx-2 mt-2" (click)="cancel()" type="button">Cancel</button>
+      </form>
+
+
+</div>

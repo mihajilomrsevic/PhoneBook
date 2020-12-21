@@ -1,0 +1,47 @@
+<div class="container mt-5">
+
+  <div *ngIf="!contactListMode">
+    <button class="btn btn-success" (click)="addContactToggle()"> Add Contact</button>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Mobile number</th>
+        <th>Delete</th>
+        <th>Edit</th>
+      </tr>
+      </thead>
+
+      <tbody *ngIf="member$">
+      <tr *ngFor="let member of member$.contacts">
+        <td name="name">{{member.name}}</td>
+        <td name="mobileNumber">+{{member.callingCode}} {{member.mobileNumber}}</td>
+        <td>
+        <button class="btn btn-danger mx-0 mt-1" (click)="deleteContact(member.id)">
+          Delete
+        </button></td>
+        <td>
+        <button class="btn btn-info mx-0 mt-1" (click)="editContactToggle(member)">
+          Edit
+        </button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="contactAddMode" class="container">
+    <div class="row justify-content-center">
+      <div class="col-8">
+        <app-contact-add (cancelAdd)="cancelAddMode($event)" (cancelEdit)="cancelEditMode($event)" (cancelList)="cancelListMode($event)"></app-contact-add>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="contactEditMode" class="container">
+    <div class="row justify-content-center">
+      <div class="col-8">
+        <app-contact-edit [contact]="contactEdit" (cancelAdd)="cancelAddMode($event)" (cancelEdit)="cancelEditMode($event)" (cancelList)="cancelListMode($event)"></app-contact-edit>
+      </div>
+    </div>
+  </div>
+</div>

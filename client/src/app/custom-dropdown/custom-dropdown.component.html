@@ -1,0 +1,14 @@
+<div class="btn-group" dropdown>
+  <button id="button-basic" dropdownToggle type="button"
+          class="btn btn-primary dropdown-toggle"
+          aria-controls="dropdown-basic">
+    {{ selectedOption }} <span class="caret"></span>
+  </button>
+
+  <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+      role="menu" aria-labelledby="button-basic">
+    <li role="menuitem" *ngFor="let option of options" (click)="changeSelectedOption(option.callingCodes[0].toString())">
+      <span class="dropdown-item"> <img src="{{ option.flag }}" width="20px" height="auto" alt="">  +{{ option.callingCodes[0] }} {{ option.name }} </span>
+    </li>
+  </ul>
+</div>
